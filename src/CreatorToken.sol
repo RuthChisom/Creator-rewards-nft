@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CreatorToken is ERC20, Ownable {
-    constructor() ERC20("CreatorToken", "CRT") {}
+    constructor() ERC20("CreatorToken", "CRT") Ownable(msg.sender) {}
 
     // Only owner (the NFT contract) can mint rewards
     function mint(address to, uint256 amount) external onlyOwner {
