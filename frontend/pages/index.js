@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import ArtNFTPlatformABI from "../contracts/ArtNFTPlatform.json";
 
-const CONTRACT_ADDRESS = "DEPLOYED_CONTRACT_ADDRESS_HERE";
+const CONTRACT_ADDRESS = "0xC666bdC8EF4d131333F23bbeb4Da9bdA8F580e7B";
 
 export default function Home() {
   const [provider, setProvider] = useState(null);

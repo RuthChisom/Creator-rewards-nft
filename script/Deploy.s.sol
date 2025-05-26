@@ -1,27 +1,24 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.19;
+pragma solidity ^0.8.20;
 
 import "forge-std/Script.sol";
 import "../src/CreatorToken.sol";
 import "../src/ArtNFT.sol";
 
-contract DeployScript is Script {
+contract Deploy is Script {
     function run() external {
+        // Broadcast transactions
         vm.startBroadcast();
 
         // Deploy CreatorToken
-        CreatorToken creatorToken = new CreatorToken();
+        CreatorToken token = new CreatorToken();
 
-        // Deploy ArtNFT with CreatorToken address
-        ArtNFT artNFT = new ArtNFT(address(creatorToken));
+        // Deploy ArtNFT with address of CreatorToken
+        ArtNFT nft = new ArtNFT(address(token));
 
-        // Transfer ownership of CreatorToken to ArtNFT (optional, recommended)
-        creatorToken.transferOwnership(address(artNFT));
+        // Transfer ownership of the token to the NFT contract
+        token.transferOwnership(address(nft));
 
         vm.stopBroadcast();
-
-        // Log addresses
-        console.log("CreatorToken deployed at:", address(creatorToken));
-        console.log("ArtNFT deployed at:", address(artNFT));
     }
 }
